@@ -93,9 +93,13 @@ WARN[0000] /home/alexey/dz/monitoring/sanbox/docker-compose.yml: the attribute `
  ✔ Container sanbox-kapacitor-1   Started                                                                                                                 0.3s 
  ✔ Container sanbox-telegraf-1    Started              
 ```
+![1](https://github.com/Foxbeerxxx/monitoring/blob/main/img/img1.png)
 
+8. `Дальше по заданию работа с Chronograf`
 
-8. `Заполните здесь этапы выполнения, если требуется ....`
+![2](https://github.com/Foxbeerxxx/monitoring/blob/main/img/img2.png)
+![3](https://github.com/Foxbeerxxx/monitoring/blob/main/img/img3.png)
+
 9. `Заполните здесь этапы выполнения, если требуется ....`
 10. `Заполните здесь этапы выполнения, если требуется ....`
 11. `Заполните здесь этапы выполнения, если требуется ....`
@@ -110,7 +114,7 @@ WARN[0000] /home/alexey/dz/monitoring/sanbox/docker-compose.yml: the attribute `
 ```
 
 `При необходимости прикрепитe сюда скриншоты
-![Название скриншота 2](ссылка на скриншот 2)`
+`
 
 
 ---
