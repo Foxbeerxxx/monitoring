@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb
+      - ./influxdb/config/:/etc/influxdb/
+    ports:
+      - "8086:8086"
+      - "8082:8082"
+      - "8089:8089/udp"
+
+  telegraf:
+    image: telegraf:latest
+    environment:
+      HOSTNAME: "telegraf-getting-started"
+    links:
+      - influxdb
+    volumes:
+      - ./telegraf/:/etc/telegraf/
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - influxdb
+
+  kapacitor:
+    image: kapacitor:latest
+    volumes:
+      - ./kapacitor/data/:/var/lib/kapacitor
+      - ./kapacitor/config/:/etc/kapacitor/
+    links:
+      - influxdb
+    ports:
+      - "9092:9092"
+
+  chronograf:
+    image: chronograf:latest
+    environment:
+      RESOURCES_PATH: "/usr/share/chronograf/resources"
+    #volumes:
+    #  - ./chronograf/data/:/var/lib/chronograf/
+    links:
+      - influxdb
+      - kapacitor
+    ports:
+      - "8888:8888"
+    depends_on:
+      - kapacitor
+      - influxdb
+      - telegraf
+
+  documentation:
+    image: alpine:3.12
+    command: sh -c "apk add --no-cache nodejs npm && npm install -g http-server && http-server /docs"
+    volumes:
+      - ./documentation:/docs
+    ports:
+      - "3010:3000"
